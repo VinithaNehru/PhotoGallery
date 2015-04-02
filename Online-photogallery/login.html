@@ -1,0 +1,55 @@
+<?php
+session_start();
+error_reporting(E_ALL)'
+$host="127.0.0.1";
+$user="root";
+$pass="";
+$db="login";
+$connection=mysql_connect($host,$user,$pass);
+mysql_select_db("$db") or die("not connected");
+function SignIn(){
+	if(!empty($_POST['u_mail']))
+	{
+		$query=mysql_query("select * from login where u_mail='".$_POST['u_mail']."' AND pass='".$_POST['pass']."'")or die(mysql_error()){
+		if(!empty($_POST['u_mail'])AND !empty($row['pass']))
+		{
+			$_SESSION('u_mail']=$row['pass'];
+			header('Location: upload.php');
+		}
+		else
+		{
+			echo "The username or password you entered is wrong. Please try again";
+		}
+	}
+}
+if(isset($_POST['submit'])
+{
+	SignIn();
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Welcome to PhotoGallery!</h1>
+	<h2>Login to continue!</h2>
+	<section class="loginform cf">
+	<form name="login" action="login.php" method="get" accept-charset=utf-8">
+	<fieldset>
+	<legend>Fill in your details here:</legend>
+	<pre>
+		<label for="usermail">Email : </label>    <input type="email" name="u_mail" placeholder="yourname@email.com" size=30 style="height:20px;" required></br>
+	
+		<label for="password">Password : </label><input type="password" name="pass" placeholder="password" size=30 style="height:20px;" required></br>
+	
+						<input type="submit" value="Login">
+					
+				     <a href="" style="font-size: 20px;">Are you a new user?</a>
+	</fieldset>
+	</form>
+	</secton>
+</body
+</html>
